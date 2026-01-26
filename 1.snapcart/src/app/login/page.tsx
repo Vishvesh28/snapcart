@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
 
-function Login() {
+function LoginForm() {
    
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
@@ -131,6 +131,14 @@ function Login() {
 
        <p className='cursor-pointer text-gray-600 mt-6 text-sm flex items-center gap-1' onClick={()=>router.push("/register")}>Want to create an account ? <LogIn className='w-4 h-4'/> <span className='text-green-600'> Sign Up</span></p>
     </div>
+  )
+}
+
+function Login() {
+  return (
+    <React.Suspense fallback={<div className="flex h-screen w-full items-center justify-center bg-white"><Loader2 className="h-10 w-10 animate-spin text-green-600" /></div>}>
+      <LoginForm />
+    </React.Suspense>
   )
 }
 
